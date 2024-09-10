@@ -1,0 +1,43 @@
+<div class="map" *ngIf="userLogined.isAuthenticated">
+    <h2>{{'Character.' + 'MapTitle' | translate}}</h2>
+    <div class="character-hierarchy" [ngClass]="this.itemCount > 5? 'change-layout' : ''">
+        <img class="map-image"  [src]="selfHierarchy[(page - 1) * this.itemCount]?.BackgroundImageData">
+        <div class="character-hierarchy-content level{{i}}" *ngFor="let item of selfHierarchy | paginate: { itemsPerPage: this.itemCount, currentPage: page }; let i = index"
+             [class.last]="item.Id === lastItem.Id && selfHierarchy.length > 1"
+             [class.active]="item.Selected == true"
+             [class.next-levels]="item?.CompPoints > currentCompPoint">
+            <div  class="character-level">
+                <img *ngIf="item.Id === lastItem.Id && selfHierarchy.length > 1" class="level-bg"  src="../assets/images/characters/last-level.png">
+                <img *ngIf="selfHierarchy.length == 1" class="level-bg"  src="../assets/images/characters/level0.png">
+                <img *ngIf="item.Id !== lastItem.Id" class="level-bg" src="../assets/images/characters/level{{i}}.png">
+                <img class="level-item"  [src]="item?.ImageData">
+                <img *ngIf="item?.CompPoints < currentCompPoint || item?.CompPoints == 0" class="opened-lock lock"  src="../assets/images/characters/opened-lock.svg">
+                <img *ngIf="item?.CompPoints > currentCompPoint" class="closed-lock lock"  src="../assets/images/characters/closed-lock.svg">
+                <div *ngIf="item.Id !== lastItem.Id" class="wrapper"
+                     style="-webkit-mask-image: url('../assets/images/characters/level{{i}}.png');
+                            mask-image: url('../assets/images/characters/level{{i}}.png')"></div>
+                <div *ngIf="item.Id === lastItem.Id" class="wrapper"
+                     style="-webkit-mask-image: url('../assets/images/characters/last-level.png');
+                     mask-image: url('../assets/images/characters/last-level.png')"></div>
+            </div>
+            <div class="info">
+                <div>
+                    <span>{{item.Title | translate}}</span>
+                    <p class="level">{{'Level' | translate}}:{{item.Title | translate}}</p>
+                    <p>{{'Description' | translate}}:{{item.Description | translate}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="character-pagination">
+        <pagination-controls
+                nextLabel="{{'Next' | translate}}"
+                autoHide="true"
+                previousLabel="{{'Prev' | translate}}"
+                (pageChange)="page = $event"></pagination-controls>
+    </div>
+</div>
+
+
+

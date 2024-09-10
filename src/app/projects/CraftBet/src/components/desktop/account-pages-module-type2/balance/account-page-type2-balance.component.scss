@@ -1,0 +1,79 @@
+.item-cell-container {
+  display: flex;
+  justify-content: var(--account-statement-item-justify-content ,space-between);
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  cursor: var(--account-statement-item-cursor, default);
+  //font-size: var(--account-statement-item-account-font-size, 14px);
+  .item-cell-account-img {
+    width: var(--account-statement-item-img-width, 22px);
+    height: var(--account-statement-item-img-height, 20px);
+    margin: var(--account-statement-item-img-margin, 0);
+    display: var(--account-statement-item-img-display, none);
+  }
+  .radio-input {
+    display: var(--account-statement-item-radio-label-display, none);
+    cursor: pointer;
+  }
+  .item-cell-account-name {
+    width: var(--account-statement-item-account-name-width,100%);
+    text-align: var(--account-statement-item-account-name-text-align,left);
+    margin-left: var(--account-statement-item-account-name-margin-left, 0px);
+    font-size: var(--account-statement-item-account-name-font-size, 12px);
+    word-break: var(--account-statement-item-account-name-word-break, break-word);
+    overflow-x: var(--account-statement-item-account-name-overflow-x, hidden);
+    text-overflow: var(--account-statement-item-account-name-text-overflow, ellipsis);
+  }
+  .item-cell-account-balance {
+    margin-left: var(--account-statement-item-account-balance-margin-left, 0px);
+    font-size: var(--account-statement-item-account-balance-font-size, 12px);
+  }
+  .check-icon {
+    display: var(--balance-check-icon-display, none);
+    margin-left: var(--balance-check-icon-margin-left, auto);
+    margin-right: var(--balance-check-icon-margin-right, 10px);
+  }
+  .item_cell {
+    display: table-cell;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  .item-cell-name-hover {
+    display: none;
+    position: absolute;
+    right: var(--item-cell-name-right, 10px);
+    top: var(--item-cell-name-top, 40px);
+    color: var(--item-cell-name-color, #fff);
+    background: var(--item-cell-name-background, #12376C);
+    padding: var(--item-cell-name-padding, 5px);
+    border-radius: var(--item-cell-name-border-radius, 0px);
+    z-index: 1;
+  }
+  &:hover {
+    .item-cell-name-hover {
+      display: var(--item-cell-name-hover-display, none);
+    }
+  }
+}
+.item-cell-container:hover {
+  background: var(--account-statement-item-hover-background, transparent);
+}
+.selected {
+  background: var(--account-statement-item-selected-background, transparent) !important;
+}
+.redirect-part {
+  color: var(--account-statement-footer-color, #fff);
+  text-align: var(--account-statement-footer-text-align, center);
+  text-decoration: var(--account-statement-footer-text-decoration, underline);
+  font-size: var(--account-statement-footer-font-size, 11px);
+  display: var(--account-statement-footer-display, none);
+  background: var(--account-statement-footer-background, #ED1C24);
+  padding: var(--account-statement-footer-padding, 10px);
+  border-radius: var(--account-statement-footer-border-radius, 4px);
+  font-weight: var(--account-statement-footer-font-weight, 400);
+  cursor: pointer;
+  //--account-statement-footer-text-decoration: none;
+  //--account-statement-footer-font-weight: 600
+  //--account-statement-footer-display: block;
+}

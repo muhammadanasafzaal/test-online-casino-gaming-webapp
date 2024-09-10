@@ -1,0 +1,130 @@
+<div class="mobile-footer-section" id="mobileFooterSection">
+    @for(commonItem of commonItems; track commonItem.Id)
+    {
+        @switch (commonItem.Type)
+        {
+            @case ('m-ft-menu-item')
+            {
+                <div>
+                    <div class="mobile-footer-section_boxMenu {{customStyleName}}_boxMenu">
+                        <div class="mobile-footer-section_boxMenu_top {{customStyleName}}_boxMenu_top">
+                            @for (menuItem of commonItem.Menu; track menuItem.Id)
+                            {
+                                <div class="footer-column {{customStyleName}}"
+                                     [ngClass]="{'showFooter':animateFooter}" collapse>
+                                    <div class="footer-column-title" (click)="redirectInToPag(menuItem)">
+                                        <span>{{'Footer.' + menuItem.Title | translate}}</span>
+                                        <i class="icon-arrow"></i>
+                                    </div>
+                                    <div class="footer-column-content">
+                                        @for (item of menuItem?.SubMenu; track item.Id)
+                                        {
+                                            @if(item?.OpenInRouting)
+                                            {
+                                                <a class="footer-column-item" routerLinkActive="active"
+                                                   (click)="goDepositPage(item)"
+                                                   [ngStyle]="{'background-image': 'url(../../../../../../../assets/images/footer-menu/' + item?.Icon+ ')'}">
+                                                    <div [innerHtml]="'Footer.' + item.Title | translate | sanitizer: 'html'"></div>
+                                                </a>
+                                            }
+                                            @else
+                                            {
+                                                <a class="footer-column-item" target="_blank" href="{{item?.Href}}">
+                                                    <div [innerHtml]="'Footer.' + item.Title | translate | sanitizer: 'html'"></div>
+                                                </a>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+            @case ('m-ft-images')
+            {
+                <div [className]="commonItem.className ? 'm-ft-images ' + commonItem.className : 'm-ft-images'">
+                    <div class="m-ft-images-title">{{'Footer.' + commonItem?.Title | translate}}</div>
+                    @for (item of commonItem.SubMenu; track item.Id)
+                    {
+                        @switch (item.Type)
+                        {
+                            @case ('1')
+                            {
+                                <div class="ft-images-type1">
+                                    <a  class="ft-images-type1-item" routerLinkActive="active"
+                                        (click)="goDepositPage(item)"
+                                        [ngStyle]="{'background-image': 'url(../../../../../../../assets/images/mobile-footer-menu/' +  item?.Icon}"></a>
+                                </div>
+                            }
+                            @case ('2')
+                            {
+                                <div>
+                                    <div  class="ft-images-type2 license" [innerHtml]="item.Href | sanitizer: 'html'"></div>
+                                </div>
+                            }
+                            @case ('3')
+                            {
+                                <div>
+                                    <div class="ft-images-type3">
+                                        <a class="ft-images-type3-item"  (click)="socialChange(item)"
+                                           [ngStyle]="{'background-image': 'url(../../../../../../../assets/images/mobile-footer-menu/' + item?.Icon+ ')'}">
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+            }
+            @case ('m-ft-text')
+            {
+                <div [className]="commonItem.className ? 'm-ft-text ' + commonItem.className : 'm-ft-text'">
+
+                    @for (item of commonItem.SubMenu; track item.Id)
+                    {
+                        @switch (item.Type)
+                        {
+                            @case('1')
+                            {
+                                <div>
+                                    <div  class="ft-images-type2 license" [innerHtml]="item.Href | sanitizer: 'html'"></div>
+                                </div>
+                            }
+                            @case('2')
+                            {
+                                <div class="info-text">
+                                    <input type="checkbox" id="{{item.Title}}">
+                                    <p [innerHTML]="'Footer.' + item.Title | translate | sanitizer: 'html'"></p>
+                                    <label class="see-more" for="{{item.Title}}" role="button">{{'Footer.see more' | translate }}</label>
+                                    <label class="see-less" for="{{item.Title}}" role="button">{{'Footer.see less' | translate }}</label>
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+            }
+            @case ('m-ft-common-btn')
+            {
+                @if(isLogin)
+                {
+                    <div [className]="commonItem.className ? 'm-ft-common ' + commonItem.className : 'm-ft-common'">
+                        <functional-btn [menuItem]="commonItem" class="{{commonItem.className}}" itemClassname="{{commonItem.className}}"></functional-btn>
+                    </div>
+                }
+            }
+            @case ('m-ft-contacts')
+            {
+                <div [className]="commonItem.className ? 'm-ft-contacts ' + commonItem.className : 'm-ft-contacts'">
+                    @for (item of commonItem.SubMenu; track item.Id)
+                    {
+                        <div class="ft-contacts-item">
+                            <span class="icon-{{item?.Icon}}"  (click)="socialChange(item)"> </span>
+                            <span>{{item?.Title | translate}}</span>
+                        </div>
+                    }
+                </div>
+            }
+        }
+    }
+</div>

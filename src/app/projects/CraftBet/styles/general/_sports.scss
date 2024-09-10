@@ -1,0 +1,21 @@
+.sports-section {
+ /* width: var(--full-screen-product-width, 100%);*/
+  min-height: var(--full-screen-product-min-height, 560px);
+  max-width: var(--full-screen-product-max-width, none);
+  /*margin: 0 auto;*/
+  clear: both;
+  background: color(product-background);
+
+  .game-content
+  {
+    height: 100%;
+  }
+
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+}

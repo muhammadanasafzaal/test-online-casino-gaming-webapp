@@ -1,0 +1,34 @@
+
+    <div class="mobile-news-section recponcive-height">
+
+        <div class="product-content">
+            <ng-container  >
+                <div class="product-list fade" id="slide"
+                     >
+                    <div class="products-list-item" *ngFor="let item of newsFragment.News, let i = index"
+                         [queryParams]="{id:item.Id}"
+                         [routerLink]="['/news']">
+                        <div class="product-list-block-name type-{{item.Type}}">{{newsTypes[item.Type] | translate}}</div>
+                        <div class="news_item">
+                            <img src="../../../../../../../assets/images/news/medium/{{item.ImageName}}"/>
+                        </div>
+
+                        <div class="news_text">
+                            <div class="news_title" [innerHtml]="item.Title"></div>
+                            <p [innerHtml]="item.Description"></p>
+                            <div class="date">
+                                <i class="icon-timezone"></i>
+                                <span class="published-date">{{item.DeltaTime}} {{'ago' | translate}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+
+
+
+
+    </div>
+
+

@@ -1,0 +1,15 @@
+<div class="modal-content {{data.title}}">
+    <div class="modal-body">
+        <div class="{{data.title}}_body">
+            {{'User.' + data.title | translate}}
+        </div>
+
+        <h4 class="modal_content" [innerHTML]="'Info.' + 'AcceptTermsConditions' | translate | sanitizer: 'html'"></h4>
+
+        <button type="submit" (click)="acceptTerms()" class="{{data.title}}_btn">{{'Info.Yes' | translate}}</button>
+
+        <div class="error_message">{{errorMessage}}</div>
+
+    </div>
+
+</div>
